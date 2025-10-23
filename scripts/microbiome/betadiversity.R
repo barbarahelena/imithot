@@ -62,6 +62,10 @@ dbray <- as.data.frame(dbray)
 dbray$SampleID <- rownames(dbray)
 dbray <- left_join(dbray, df_intervention, by = 'SampleID') # add metadata / covariates
 
+dfsel <- dbray %>% filter(Group == "Allogenic") |> filter(FUtime %in% c(0,6))
+bray <- vegan::vegdist(mb2[rownames(mb2) %in% dfsel$SampleID,], method = 'bray')
+adonis2(bray ~ as.factor(FUtime), data = dfsel)
+
 #### Bray-Curtis per time point ####
 braypertimepoint <- function(timepoint, df = dbray, tab = mb2) {
     set.seed(14)
