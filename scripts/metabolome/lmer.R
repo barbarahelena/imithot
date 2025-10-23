@@ -181,8 +181,8 @@ for(i in 1:nrow(maxsig6)){
         plist[[i]] <- pl2
 }
 
-(plots <- ggarrange(plotlist = plist[1:21], common.legend = TRUE, legend = "bottom",
-          labels = LETTERS[1:21],
+(plots <- ggarrange(plotlist = plist[1:23], common.legend = TRUE, legend = "bottom",
+          labels = LETTERS[1:23],
           nrow = 6, ncol = 5))
 ggsave(plots, filename = "results/metabolomics/lmer/lmer_plots_6m.pdf", width = 16, height = 21)
 # ggsave(plots, filename = "results/microbiome/lmer/lmer_plots.png", width = 12, height = 8)
