@@ -75,8 +75,10 @@ sg <- readRDS("data/shotgun_abundance.RDS")
 rownames(sg)[which(rownames(sg) == "IMITHOT_ALT023_2")] <- "IMITHOT_023_2"
 meta2 <- meta |> filter(SampleID %in% rownames(sg))
 head(sg)[1:5,1:5]
+sg <- sg[which(rownames(sg) %in% meta2$SampleID), ]
 dim(sg)
 rownames(sg)
+saveRDS(sg, "data/shotgun_cleaned.RDS")
 
 # Pruning of species - IMITHOT patients
 imi <- meta2 |> filter(Group != "Healthy") |> pull(SampleID)
